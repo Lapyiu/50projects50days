@@ -1,0 +1,76 @@
+<template>
+  <div :class="{ search: true, active: isActive }">
+    <input
+      ref="input"
+      type="text"
+      :class="{ input: true }"
+      placeholder="Search..."
+    />
+    <button class="btn" @click="clickSearch">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "search",
+  data() {
+    return {
+      isActive: false,
+    };
+  },
+  methods: {
+    clickSearch() {
+      console.log(this.isActive);
+      this.isActive = !this.isActive;
+      this.$refs.input.focus()
+    },
+  },
+};
+</script>
+
+<style scoped>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css");
+
+.search {
+  position: relative;
+  height: 50px;
+}
+
+.search .input {
+  background-color: #fff;
+  border: 0;
+  font-size: 18px;
+  padding: 15px;
+  height: 50px;
+  width: 50px;
+  transition: width 0.3s ease;
+}
+
+.btn {
+  background-color: #fff;
+  border: 0;
+  cursor: pointer;
+  font-size: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  transition: transform 0.3s ease;
+}
+
+.btn:focus,
+.input:focus {
+  outline: none;
+}
+
+.search.active .input {
+  width: 200px;
+}
+
+.search.active .btn {
+  transform: translateX(198px);
+}
+</style>
